@@ -1,4 +1,4 @@
-# House Listings Web Application as a part of DTT_Frontend_Assessment
+# House Listings Web Application as a part of DTT Frontend Assessment
 
 This web application allows users to:
 
