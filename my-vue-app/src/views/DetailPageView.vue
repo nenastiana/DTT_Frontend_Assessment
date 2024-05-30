@@ -81,10 +81,9 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
-import { computed, onMounted } from 'vue';
 
 import IconBed from '../components/icons/ic_bed@3x.png';
 import IconBack from '../components/icons/ic_back_grey@3x.png';
@@ -117,11 +116,20 @@ const navigateToOverview = () => {
   router.push('/');
 };
 
+const fetchHouseData = async () => {
+  await store.dispatch('fetchHouseById', houseId.value);
+  isLoading.value = false;
+};
+
 onMounted(async () => {
-  await store.dispatch('fetchHouseById', houseId.value).then(() => {
-    isLoading.value = false;
-  });
+  await fetchHouseData();
 });
+
+watch(houseId, async () => {
+  await fetchHouseData();
+});
+
+
 </script>
 
 <style scoped>
