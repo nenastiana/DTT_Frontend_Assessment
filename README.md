@@ -15,7 +15,7 @@ The project is built using Vite. To complete this assessment, I had to learn a n
 
 ## Getting Started
 
-To run the project locally, use the following command:
+To run the project locally, use the following command from my-vue-app:
 
 ```bash
 npm run dev -- --port 8080
