@@ -5,6 +5,7 @@ export default createStore({
   state: {
     favoriteHouses: new Set(JSON.parse(localStorage.getItem('favoriteHouses'))) || new Set(),
     viewedHouses: new Set(JSON.parse(localStorage.getItem('viewedHouses'))) || new Set(),
+    imageFile: new FormData(),
     housesData: null,
     selectedHouse: null,
     searchQuery: '',
@@ -24,8 +25,8 @@ export default createStore({
       state.selectedHouse = houses[0];
     },
     UPDATE_HOUSE_IMAGE(state, imageUrl) {
-      if (state.house) {
-        state.house.imageUrl = imageUrl;
+      if (state.selectedHouse) {
+        state.selectedHouse.image = imageUrl;
       }
     },
     SET_SEARCH_QUERY(state, query) {
@@ -53,7 +54,13 @@ export default createStore({
     ADD_VIEWED_HOUSE(state, houseId) {
       state.viewedHouses.add(houseId);
       localStorage.setItem('viewedHouses', JSON.stringify(Array.from(state.viewedHouses)));
-    }
+    },
+    SET_IMAGE_FILE(state, file) {
+      state.imageFile.append('image', file);
+    }, 
+    CLEAR_IMAGE_FILE(state) {
+      state.imageFile = new FormData();
+  }
   },
   actions: {
     async fetchHousesData({ commit }) {
@@ -163,7 +170,13 @@ export default createStore({
     },
     addToViewed({ commit }, houseId) {
       commit('ADD_VIEWED_HOUSE', houseId);
-    }
+    },
+    setImageFile({ commit }, imageFile) {
+      commit('SET_IMAGE_FILE', imageFile);
+    }, 
+    clearImageFile({ commit }) {
+      commit('CLEAR_IMAGE_FILE');
+  }
   },
   getters: {
     housesData(state) {
@@ -208,6 +221,7 @@ export default createStore({
     },
     resultsCount(state, getters) {
       return getters.filteredHouses.length;
-    }
+    },
+    imageFile: (state) => state.imageFile
   }
 });

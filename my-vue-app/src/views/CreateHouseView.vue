@@ -53,18 +53,7 @@
             <span v-if="!houseForm.city && showError" class="error-message">Required field missing</span>
           </div>
 
-          <div class="image-upload-input" v-if="!imageUrl">
-            <label for="imageUpload">Upload picture (PNG or JPG)*</label>
-
-            <label for="imageUpload" class="customUpload">
-              <img :src="IconUpload" alt="Upload Icon" class="upload-icon" />
-            </label>
-            <input type="file" id="imageUpload" style="display: none" @change="handleImageUploadFromComputer" />
-          </div>
-          <div v-if="imageUrl" class="image-preview-container">
-            <img :src="imageUrl" alt="Image Preview" class="image-preview" />
-            <img :src="IconClear" alt="Clear" class="clear-icon" @click="clearImage" />
-          </div>
+          <UploadImage />
 
           <div>
             <label for="price">Price*</label>
@@ -134,20 +123,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useStore } from 'vuex';
 import { useRouter } from 'vue-router';
 import { createHouseForm, isValidHouseForm } from '../helpers/house.js';
-import { handleImageUploadFromComputer, imageUrl, imageFile } from '../helpers/utils.js';
+import UploadImage from '../components/UploadImage.vue';
 
 import IconBack from '../components/icons/ic_back_grey@3x.png';
-import IconClear from '../components/icons/ic_clear_white@3x.png';
-import IconUpload from '../components/icons/ic_upload@3x.png';
 
 const store = useStore();
-const houseForm = ref(createHouseForm());
 const router = useRouter();
 
+const imageFile = computed(() => store.getters.imageFile);
+const houseForm = ref(createHouseForm());
 const showError = ref(false);
 
 const navigateToOverview = () => {
@@ -155,14 +143,12 @@ const navigateToOverview = () => {
 };
 
 const createHouse = async () => {
-
   showError.value = true;
-
   if (isValidHouseForm(houseForm)) {
     try {
       const newListingId = await store.dispatch('createHouse', {
         houseForm: houseForm.value,
-        imageFile: imageFile
+        imageFile: imageFile.value,
       });
       if (newListingId) {
         clearImage();
@@ -177,9 +163,8 @@ const createHouse = async () => {
 };
 
 const clearImage = () => {
-  imageUrl.value = null;
+    store.dispatch('clearImageFile'); 
 };
-
 </script>
 
 <style scoped>

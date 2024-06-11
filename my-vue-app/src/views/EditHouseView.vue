@@ -55,20 +55,7 @@
                 :class="{ 'error-input': !house.location.city && showError }" />
               <span v-if="!house.location.city && showError" class="error-message">Required field missing</span>
             </div>
-
-            <div class="image-upload-input" v-if="!imageUrl && !house.image">
-              <label for="imageUpload">Upload picture (PNG or JPG)*</label>
-              <label for="imageUpload" class="customUpload">
-                <img :src="IconUpload" alt="Upload Icon" class="upload-icon" />
-              </label>
-              <input type="file" id="imageUpload" style="display: none" @change="handleImageUploadFromComputer" />
-            </div>
-            <div v-if="imageUrl || house.image" class="image-preview-container">
-              <img v-if="!imageUrl && house.image" :src="house.image" alt="Existing Image" class="image-preview" />
-              <img v-if="imageUrl" :src="imageUrl" alt="Uploaded Image" width="300" class="image-preview" />
-              <img :src="IconClear" alt="Clear Icon" class="clear-icon" @click="clearImage" />
-            </div>
-
+            <UploadImage :initialImageUrl="house.image" />
             <div>
               <label for="price">Price*</label>
               <input type="text" v-model="house.price" id="price" placeholder="eg. €150.000"
@@ -140,11 +127,9 @@ import { computed, onMounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
 import { createHouseForm, isValidHouse } from '../helpers/house.js';
-import { handleImageUploadFromComputer, imageUrl, imageFile } from '../helpers/utils.js';
+import UploadImage from '../components/UploadImage.vue';
 
 import IconBack from '../components/icons/ic_back_grey@3x.png';
-import IconClear from '../components/icons/ic_clear_white@3x.png';
-import IconUpload from '../components/icons/ic_upload@3x.png';
 
 const store = useStore();
 const route = useRoute();
@@ -152,7 +137,7 @@ const router = useRouter();
 
 const houseId = computed(() => route.params.id);
 const house = computed(() => store.getters.selectedHouse);
-
+const imageFile = computed(() => store.getters.imageFile);
 const showError = ref(false);
 
 const navigateToHouseDetail = () => {
@@ -160,8 +145,7 @@ const navigateToHouseDetail = () => {
 };
 
 const clearImage = () => {
-  imageUrl.value = null;
-  house.value.image = null;
+  store.dispatch('clearImageFile');
 };
 
 const updateHouse = async () => {
@@ -171,8 +155,9 @@ const updateHouse = async () => {
       await store.dispatch('updateHouse', {
         houseForm: createHouseForm(house),
         id: houseId.value,
-        imageFile: imageFile
+        imageFile: imageFile.value
       });
+      clearImage();
       navigateToHouseDetail();
     } catch (error) {
       console.error('Failed to update house:', error);
