@@ -9,9 +9,7 @@
             <img :src="isFavorite(house.id) ? IconLike : IconUnlike" alt="Favorite Icon" class="like-icon"
               @click.stop="toggleFavorite(house.id)" />
             <div v-if="house.madeByMe">
-              <router-link :to="'/house/edit/' + house.id">
-                <img :src="IconEdit" alt="Edit" class="edit-icon" @click.stop="navigateToEdit(house.id)" />
-              </router-link>
+              <img :src="IconEdit" alt="Edit" class="edit-icon" @click.stop="navigateToEdit(house.id)" />
               <img :src="IconDelete" alt="Delete" class="delete-icon" @click.stop="openModal(house.id)" />
             </div>
           </div>
