@@ -23,7 +23,7 @@
           <img :src="house.image" alt="House Image" class="house-image" />
 
           <div class="actions-container">
-            <h1>{{ house.location.street }} {{ house.location.houseNumber }}</h1>
+            <h1>{{ house.streetName }} {{ house.houseNumber }}</h1>
             <div v-if="house.madeByMe">
               <router-link :to="'/house/edit/' + house.id">
                 <img :src="IconEdit" alt="Edit" class="action-icon" />
@@ -36,7 +36,7 @@
           <div class="info">
             <div class="house-details">
               <img :src="IconLocation" alt="Location Icon" class="info-icon" />
-              {{ house.location.zip }} {{ house.location.city }}
+              {{ house.zip }} {{ house.city }}
             </div>
             <div class="house-details">
               <div class="house-details">
@@ -53,15 +53,15 @@
 
             <div class="house-details">
               <div class="house-details">
-                <img :src="IconBed" alt="Bed Icon" class="info-icon" /> {{ house.rooms.bedrooms }}
+                <img :src="IconBed" alt="Bed Icon" class="info-icon" /> {{ house.bedrooms }}
               </div>
               <div class="house-details">
                 <img :src="IconBath" alt="Bath Icon" class="info-icon" />
-                {{ house.rooms.bathrooms }}
+                {{ house.bathrooms }}
               </div>
               <div class="house-details">
                 <img :src="IconBath" alt="Bath Icon" class="info-icon" />
-                {{ house.rooms.bathrooms }}
+                {{ house.bathrooms }}
               </div>
               <div class="house-details">
                 <img :src="IconGarage" alt="Garage Icon" class="info-icon" />{{

@@ -1,38 +1,19 @@
 function createHouseForm(house) {
   return {
-    price: house ? house.value.price : '',
-    bedrooms: house ? house.value.rooms.bedrooms : '',
-    bathrooms: house ? house.value.rooms.bathrooms : '',
-    size: house ? house.value.size : '',
-    streetName: house ? house.value.location.street : '',
-    houseNumber: house ? house.value.location.houseNumber : '',
-    numberAddition: house ? house.value.location.houseNumberAddition : '',
-    city: house ? house.value.location.city : '',
-    zip: house ? house.value.location.zip : '',
-    constructionYear: house ? house.value.constructionYear : '',
-    hasGarage: house ? house.value.hasGarage : '',
-    description: house ? house.value.description : ''
+    price: house ? house.price : '',
+    image: house ? house.image : '',
+    bedrooms: house ? house.bedrooms : '',
+    bathrooms: house ? house.bathrooms : '',
+    size: house ? house.size : '',
+    streetName: house ? house.streetName : '',
+    houseNumber: house ? house.houseNumber : '',
+    numberAddition: house ? house.numberAddition : '',
+    city: house ? house.city : '',
+    zip: house ? house.zip : '',
+    constructionYear: house ? house.constructionYear : '',
+    hasGarage: house ? house.hasGarage : '',
+    description: house ? house.description : ''
   };
-}
-
-function isValidHouse(house) {
-  if (!house || !house.value) {
-    return false;
-  }
-  const year = parseInt(house.value.constructionYear, 10);
-  return (
-    house.value.price &&
-    house.value.rooms.bedrooms &&
-    house.value.rooms.bathrooms &&
-    house.value.size &&
-    house.value.location.street &&
-    house.value.location.houseNumber &&
-    house.value.location.city &&
-    house.value.location.zip &&
-    house.value.constructionYear &&
-    year >= 1901 && 
-    house.value.description
-  );
 }
 
 function isValidHouseForm(houseForm) {
@@ -50,9 +31,9 @@ function isValidHouseForm(houseForm) {
     houseForm.value.city &&
     houseForm.value.zip &&
     houseForm.value.constructionYear &&
-    year >= 1901 && 
+    year >= 1901 &&
     houseForm.value.description
   );
 }
 
-export { createHouseForm, isValidHouse, isValidHouseForm };
+export { createHouseForm, isValidHouseForm };

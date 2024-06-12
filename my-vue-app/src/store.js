@@ -22,7 +22,25 @@ export default createStore({
       state.selectedHouse = null;
     },
     SET_SELECTED_HOUSE(state, houses) {
-      state.selectedHouse = houses[0];
+      const house = houses[0];
+      const houseNewFormat = {
+        id: house.id,
+        image: house.image,
+        price: house.price,
+        bedrooms: house.rooms.bedrooms,
+        bathrooms: house.rooms.bathrooms,
+        size: house.size,
+        streetName: house.location.street,
+        houseNumber:house.location.houseNumber,
+        numberAddition:house.location.houseNumberAddition,
+        city: house.location.city,
+        zip: house.location.zip,
+        constructionYear: house.constructionYear,
+        hasGarage: house.hasGarage,
+        description: house.description,
+        madeByMe: house.madeByMe
+      };
+      state.selectedHouse = houseNewFormat;
     },
     UPDATE_HOUSE_IMAGE(state, imageUrl) {
       if (state.selectedHouse) {
@@ -60,7 +78,7 @@ export default createStore({
     }, 
     CLEAR_IMAGE_FILE(state) {
       state.imageFile = new FormData();
-  }
+    },
   },
   actions: {
     async fetchHousesData({ commit }) {
@@ -176,7 +194,7 @@ export default createStore({
     }, 
     clearImageFile({ commit }) {
       commit('CLEAR_IMAGE_FILE');
-  }
+    },
   },
   getters: {
     housesData(state) {
