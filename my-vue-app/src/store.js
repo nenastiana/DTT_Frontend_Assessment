@@ -1,5 +1,5 @@
 import { createStore } from 'vuex';
-import axios from 'axios';
+import { service } from './service';
 
 export default createStore({
   state: {
@@ -31,8 +31,8 @@ export default createStore({
         bathrooms: house.rooms.bathrooms,
         size: house.size,
         streetName: house.location.street,
-        houseNumber:house.location.houseNumber,
-        numberAddition:house.location.houseNumberAddition,
+        houseNumber: house.location.houseNumber,
+        numberAddition: house.location.houseNumberAddition,
         city: house.location.city,
         zip: house.location.zip,
         constructionYear: house.constructionYear,
@@ -75,19 +75,17 @@ export default createStore({
     },
     SET_IMAGE_FILE(state, file) {
       state.imageFile.append('image', file);
-    }, 
+    },
     CLEAR_IMAGE_FILE(state) {
       state.imageFile = new FormData();
-    },
+    }
   },
   actions: {
     async fetchHousesData({ commit }) {
       try {
-        const response = await axios.get('https://api.intern.d-tt.nl/api/houses', {
-          headers: { 'X-Api-Key': 'Tm8iDoF0eA5jwzEBq3cQu47I2s-fWlpr' }
-        });
-        commit('SET_HOUSES_DATA', response.data);
-        return response.data;
+        const data = await service.fetchHousesData();
+        commit('SET_HOUSES_DATA', data);
+        return data;
       } catch (error) {
         console.error('Error fetching data:', error);
         throw error;
@@ -95,9 +93,7 @@ export default createStore({
     },
     async deleteHouse({ commit }, id) {
       try {
-        await axios.delete(`https://api.intern.d-tt.nl/api/houses/${id}`, {
-          headers: { 'X-Api-Key': 'Tm8iDoF0eA5jwzEBq3cQu47I2s-fWlpr' }
-        });
+        await service.deleteHouse(id);
         commit('DELETE_HOUSE', id);
       } catch (error) {
         console.error('Error deleting house:', error);
@@ -106,10 +102,8 @@ export default createStore({
     },
     async fetchHouseById({ commit }, id) {
       try {
-        const response = await axios.get(`https://api.intern.d-tt.nl/api/houses/${id}`, {
-          headers: { 'X-Api-Key': 'Tm8iDoF0eA5jwzEBq3cQu47I2s-fWlpr' }
-        });
-        commit('SET_SELECTED_HOUSE', response.data);
+        const data = await service.fetchHouseById(id);
+        commit('SET_SELECTED_HOUSE', data);
       } catch (error) {
         console.error('Error fetching house by ID:', error);
         throw error;
@@ -117,55 +111,33 @@ export default createStore({
     },
     async updateHouse({ dispatch }, payload) {
       try {
-        const response = await axios.post(
-          `https://api.intern.d-tt.nl/api/houses/${payload.id}`,
-          payload.houseForm,
-          {
-            headers: { 'X-Api-Key': 'Tm8iDoF0eA5jwzEBq3cQu47I2s-fWlpr' }
-          }
-        );
+        const data = await service.updateHouse(payload.id, payload.houseForm);
         if (payload.imageFile) {
           await dispatch('uploadImage', { imageFile: payload.imageFile, id: payload.id });
         }
-        return response;
+        return data;
       } catch (error) {
-        console.error('Error saving changes:', error);
+        console.error('Error updating house:', error);
         throw error;
       }
     },
-
     async createHouse({ dispatch }, payload) {
-      let id = null;
       try {
-        const response = await axios.post(
-          'https://api.intern.d-tt.nl/api/houses',
-          payload.houseForm,
-          {
-            headers: { 'X-Api-Key': 'Tm8iDoF0eA5jwzEBq3cQu47I2s-fWlpr' }
-          }
-        );
-        id = response.data.id;
-        await dispatch('uploadImage', { imageFile: payload.imageFile, id: id });
+        const data = await service.createHouse(payload.houseForm);
+        const id = data.id;
+        if (payload.imageFile) {
+          await dispatch('uploadImage', { imageFile: payload.imageFile, id: id });
+        }
         return id;
       } catch (error) {
-        console.error('Error:', error);
+        console.error('Error creating house:', error);
         throw error;
       }
     },
-
     async uploadImage({ commit }, imageUploadData) {
       try {
-        const response = await axios.post(
-          `https://api.intern.d-tt.nl/api/houses/${imageUploadData.id}/upload`,
-          imageUploadData.imageFile,
-          {
-            headers: {
-              'X-Api-Key': 'Tm8iDoF0eA5jwzEBq3cQu47I2s-fWlpr',
-              'Content-Type': 'multipart/form-data'
-            }
-          }
-        );
-        commit('UPDATE_HOUSE_IMAGE', response.data.imageUrl);
+        const data = await service.uploadImage(imageUploadData.id, imageUploadData.imageFile);
+        commit('UPDATE_HOUSE_IMAGE', data.imageUrl);
       } catch (error) {
         console.error('Error uploading image:', error);
         throw error;
@@ -191,10 +163,10 @@ export default createStore({
     },
     setImageFile({ commit }, imageFile) {
       commit('SET_IMAGE_FILE', imageFile);
-    }, 
+    },
     clearImageFile({ commit }) {
       commit('CLEAR_IMAGE_FILE');
-    },
+    }
   },
   getters: {
     housesData(state) {
