@@ -11,7 +11,7 @@
             <div class="form-row">
                 <div class="form-field">
                     <label for="houseNumber">House number*</label>
-                    <input id="houseNumber" v-model="houseForm.houseNumber"
+                    <input id="houseNumber" type="number" v-model="houseForm.houseNumber"
                         :class="{ 'error-input': !houseForm.houseNumber && showError }"
                         placeholder="Enter house number" />
                     <span v-if="!houseForm.houseNumber && showError" class="error-message">Required field missing</span>
