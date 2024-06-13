@@ -115,10 +115,15 @@ nav a:hover {
     width: 100%;
   }
 
+  nav a {
+    margin-right: 0;
+  }
+  
   nav a:nth-child(3),
   nav a:nth-child(4),
   nav a:nth-child(5) {
     display: none;
+
   }
 
   .icon-mobile {

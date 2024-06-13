@@ -149,6 +149,8 @@ watch(houseId, async () => {
 
 .content-container {
   display: flex;
+  flex-direction: row;
+  gap: 50px;
   justify-content: space-between;
   width: 1100px;
 }

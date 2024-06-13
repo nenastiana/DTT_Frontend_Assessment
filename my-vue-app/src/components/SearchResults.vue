@@ -50,6 +50,7 @@ const resultsCount = computed(() => store.getters.resultsCount);
 
   .content-container {
     width: 100%;
+    align-items: center;
   }
 
   .empty-search-container img {

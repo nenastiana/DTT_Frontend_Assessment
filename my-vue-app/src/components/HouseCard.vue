@@ -8,8 +8,10 @@
           <div class="actions-icon">
             <img :src="isFavorite(house.id) ? IconLike : IconUnlike" alt="Favorite Icon" class="like-icon"
               @click.stop="toggleFavorite(house.id)" />
-              <img :src="IconEdit" alt="Edit" class="edit-icon" @click.stop="navigateToEdit(house.id)" v-if="house.madeByMe"/>
-              <img :src="IconDelete" alt="Delete" class="delete-icon" @click.stop="openModal(house.id)" v-if="house.madeByMe"/>
+            <img :src="IconEdit" alt="Edit" class="edit-icon" @click.stop="navigateToEdit(house.id)"
+              v-if="house.madeByMe" />
+            <img :src="IconDelete" alt="Delete" class="delete-icon" @click.stop="openModal(house.id)"
+              v-if="house.madeByMe" />
           </div>
         </div>
         <div class="house-details">€ {{ house.price }}</div>
@@ -177,18 +179,15 @@ const navigateToEdit = (id) => {
 }
 
 .house-location {
-  width: 60%; 
-  word-wrap: break-word; 
-  white-space: normal; 
+  width: 60%;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 @media only screen and (max-width: 768px) {
-  .actions-icon img {
-    margin-right: 20px;
-  }
 
   .actions-icon img {
-    margin-right: 15px;
+    margin-right: 10px;
     width: 15px;
     height: auto;
     cursor: pointer;
@@ -221,10 +220,14 @@ const navigateToEdit = (id) => {
   }
 
   .house-location {
-  width: 60%; 
-  word-wrap: break-word; 
-  white-space: normal; 
-}
+    width: 60%;
+    word-wrap: break-word;
+    white-space: normal;
+  }
+
+  .house-details {
+    margin-right: 10px;
+  }
 
   h2 {
     font-size: 16px;
