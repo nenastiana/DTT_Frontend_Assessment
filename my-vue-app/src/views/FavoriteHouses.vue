@@ -11,7 +11,7 @@ import HouseCard from '../components/HouseCard.vue';
 import Modal from '../components/ModalPopUp.vue';
 </script>
 
-<style scope>
+<style scoped>
 .card-container {
   display: flex;
   flex-direction: column;
@@ -20,6 +20,13 @@ import Modal from '../components/ModalPopUp.vue';
 }
 
 .text {
-  margin: 50px;
+  margin: 120px 0 50px 0;
+}
+
+@media only screen and (max-width: 768px) {
+ 
+.text {
+  margin-top: 50px;
+}
 }
 </style>

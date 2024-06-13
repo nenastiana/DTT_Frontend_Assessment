@@ -200,8 +200,11 @@ watch(houseId, async () => {
 .page-container {
   display: flex;
   justify-content: center;
-  margin-top: 50px;
 }
+
+.desktop-header {
+    margin-top: 120px;
+  }
 
 @media only screen and (max-width: 768px) {
   .actions-container {

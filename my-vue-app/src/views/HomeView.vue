@@ -49,7 +49,7 @@ const navigateToCreateNew = () => {
   align-items: center;
   width: 1100px;
   justify-content: space-between;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .create-button {

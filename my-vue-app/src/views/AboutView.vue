@@ -41,7 +41,7 @@ import LogoImage from '../assets/img_logo_dtt@3x.png';
   flex-direction: column;
   justify-content: center;
   width: 1100px;
-  margin-top: 50px;
+  margin-top: 100px;
 }
 
 .company-info a {
@@ -74,6 +74,10 @@ import LogoImage from '../assets/img_logo_dtt@3x.png';
   .company-info-container {
     padding: 20px;
   }
+
+  .company-info {
+  margin-top: 20px;
+}
 
   .company-links {
     gap: 2px;

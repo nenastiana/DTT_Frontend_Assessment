@@ -139,6 +139,9 @@ select {
   border: 1px dashed #c3c3c3;
 }
 
+.desktop-header {
+  margin-top: 100px;
+}
 @media only screen and (max-width: 768px) {
   .background-container {
     background-size: contain;
