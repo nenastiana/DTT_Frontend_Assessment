@@ -34,7 +34,7 @@ const clearSearch = () => {
   display: flex;
   align-items: center;
   width: 400px;
-  height: auto;
+  height: 20px;
   background-color: #e8e8e8;
   border-radius: 10px;
   padding: 10px 0;
