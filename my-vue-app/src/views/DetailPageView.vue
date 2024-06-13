@@ -181,7 +181,6 @@ watch(houseId, async () => {
 
 .info-icon {
   width: 20px;
-  height: fit-content;
   margin-right: 5px;
 }
 

@@ -4,14 +4,12 @@
       <img class="house-image" :src="house.image" alt="House Image" />
       <div class="house-info">
         <div class="actions-container">
-          <h2>{{ house.location.street }} {{ house.location.houseNumber }}</h2>
+          <h2 class="house-location">{{ house.location.street }} {{ house.location.houseNumber }}</h2>
           <div class="actions-icon">
             <img :src="isFavorite(house.id) ? IconLike : IconUnlike" alt="Favorite Icon" class="like-icon"
               @click.stop="toggleFavorite(house.id)" />
-            <div v-if="house.madeByMe">
-              <img :src="IconEdit" alt="Edit" class="edit-icon" @click.stop="navigateToEdit(house.id)" />
-              <img :src="IconDelete" alt="Delete" class="delete-icon" @click.stop="openModal(house.id)" />
-            </div>
+              <img :src="IconEdit" alt="Edit" class="edit-icon" @click.stop="navigateToEdit(house.id)" v-if="house.madeByMe"/>
+              <img :src="IconDelete" alt="Delete" class="delete-icon" @click.stop="openModal(house.id)" v-if="house.madeByMe"/>
           </div>
         </div>
         <div class="house-details">€ {{ house.price }}</div>
@@ -112,6 +110,7 @@ const navigateToEdit = (id) => {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: baseline;
 }
 
 .actions-icon {
@@ -151,6 +150,7 @@ const navigateToEdit = (id) => {
   border-radius: 8px;
   margin-left: 20px;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .house-info {
@@ -163,11 +163,12 @@ const navigateToEdit = (id) => {
 
 .house-info img {
   width: 20px;
+  height: min-content;
   margin-right: 5px;
 }
 
 .actions-icon img {
-  margin-right: 25px;
+  margin-right: 20px;
   cursor: pointer;
 }
 
@@ -175,9 +176,15 @@ const navigateToEdit = (id) => {
   color: #a4a4a4;
 }
 
+.house-location {
+  width: 60%; 
+  word-wrap: break-word; 
+  white-space: normal; 
+}
+
 @media only screen and (max-width: 768px) {
   .actions-icon img {
-    margin-right: 25px;
+    margin-right: 20px;
   }
 
   .actions-icon img {
@@ -185,10 +192,6 @@ const navigateToEdit = (id) => {
     width: 15px;
     height: auto;
     cursor: pointer;
-  }
-
-  .card-container {
-    width: 100%;
   }
 
   .card {
@@ -206,6 +209,7 @@ const navigateToEdit = (id) => {
 
   .house-info img {
     width: 15px;
+    height: 15px;
   }
 
   .house-image {
@@ -213,7 +217,14 @@ const navigateToEdit = (id) => {
     height: 110px;
     border-radius: 8px;
     margin-left: 15px;
+    object-fit: cover;
   }
+
+  .house-location {
+  width: 60%; 
+  word-wrap: break-word; 
+  white-space: normal; 
+}
 
   h2 {
     font-size: 16px;

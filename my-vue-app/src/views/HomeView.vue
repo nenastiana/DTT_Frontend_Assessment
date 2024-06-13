@@ -87,7 +87,7 @@ const navigateToCreateNew = () => {
 
 @media only screen and (max-width: 768px) {
   .allcontent {
-    padding: 20px 50px;
+    padding: 20px;
   }
 
   .card-container {

@@ -80,6 +80,11 @@ const goToHouse = (id) => {
   padding: 15px;
 }
 
+.recommended-houses{
+  width: 90%;
+  margin-bottom: 100px;
+}
+
 h2 {
   margin-top: 0;
   margin-bottom: 15px;
@@ -99,6 +104,7 @@ h3 {
 
 .house-info img {
   width: 20px;
+  height: 20px;
   margin-right: 5px;
 }
 
