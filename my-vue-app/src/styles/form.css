@@ -14,7 +14,6 @@ button {
 .button-container {
   display: flex;
   justify-content: flex-end;
-  width: 430px;
 }
 
 .background-container {
@@ -55,12 +54,6 @@ button {
 }
 
 form {
-  margin: 20px 200px 50px 0;
-}
-
-.form-container {
-  display: flex;
-  flex-direction: column;
   width: 400px;
 }
 
@@ -68,14 +61,15 @@ form {
   display: flex;
   flex-direction: row;
   justify-content: flex-start;
-  gap: 55px;
+  gap: 30px;
+  width: 100%;
 }
 
 .form-field {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 100%;
+  width: 45%;
 }
 
 .image-preview-container {
@@ -101,12 +95,12 @@ form {
 input {
   font-family: 'Montserrat', sans-serif;
   margin: 5px 0 5px 0;
-  padding: 15px;
+  padding: 15px 0 15px 15px;
   border-radius: 8px;
   border: none;
   color: #4a4b4c;
   outline: none;
-  width: 100%;
+  width: 95%;
 }
 
 label {
@@ -124,12 +118,12 @@ label {
 select {
   font-family: 'Montserrat', sans-serif;
   margin-top: 4px;
-  padding: 14px;
+  padding: 14px 0 14px 14px;
   border-radius: 8px;
   border: none;
   color: #4a4b4c;
   outline: none;
-  width: 117%;
+  width: 103%;
   appearance: none;
 }
 
@@ -144,9 +138,13 @@ select {
 }
 @media only screen and (max-width: 768px) {
   .background-container {
-    background-size: contain;
+    background-size: 100% auto;
     background-repeat: no-repeat;
     background-position: center bottom;
+  }
+
+  .button-container {
+    justify-content: center;
   }
 
   button {
@@ -156,9 +154,19 @@ select {
   }
 
   .content-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 70px;
     width: 100%;
   }
 
+  form {
+    width: 350px;
+  }
+
+  .form-row {
+    gap: 25px;
+  }
   .desktop-header {
     display: none;
   }
@@ -166,10 +174,6 @@ select {
   .error-message {
     color: red;
     font-size: 10px;
-  }
-
-  .form-container {
-    margin: 0 40px 60px;
   }
 
   h1 {
@@ -187,7 +191,7 @@ select {
   .mobile-header {
     display: flex;
     align-items: center;
-    margin: 0 40px;
+    width: 350px;
   }
 
   .upload-icon {

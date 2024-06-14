@@ -1,7 +1,6 @@
 <template>
   <div class="background-container">
     <div class="content-container">
-
       <div class="desktop-header">
         <div class="back-button" @click="navigateToOverview">
           <img :src="IconBack" alt="Back" class="back-icon" />
