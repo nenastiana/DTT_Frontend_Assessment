@@ -1,5 +1,4 @@
 <template>
-  <div class="content-container">
     <h3 class="results-count" v-if="searchQuery && resultsCount > 0">
       {{ resultsCount }} results found
     </h3>
@@ -8,7 +7,6 @@
       <p>No results found.</p>
       <p>Please try another keyword.</p>
     </div>
-  </div>
 </template>
 
 <script setup>
@@ -47,11 +45,6 @@ const resultsCount = computed(() => store.getters.resultsCount);
 }
 
 @media only screen and (max-width: 768px) {
-
-  .content-container {
-    width: 100%;
-    align-items: center;
-  }
 
   .empty-search-container img {
     width: 300px;

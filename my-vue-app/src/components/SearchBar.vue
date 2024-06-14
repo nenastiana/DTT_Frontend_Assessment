@@ -26,9 +26,6 @@ const clearSearch = () => {
 </script>
 
 <style scoped>
-.clear-icon {
-  margin-right: 15px;
-}
 
 .search-bar {
   display: flex;
@@ -52,9 +49,17 @@ const clearSearch = () => {
   font-family: 'Open Sans', sans-serif;
 }
 
-.search-bar img {
+.search-icon {
   width: 15px;
   margin-left: 25px;
+}
+
+.clear-icon {
+  width: 20px;
+  height: 20px;
+  margin-top: 20px;
+  margin-right: 25px;
+  position: relative;
 }
 
 @media only screen and (max-width: 768px) {
