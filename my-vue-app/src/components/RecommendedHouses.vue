@@ -38,19 +38,19 @@ import IconSize from './icons/ic_size@3x.png';
 const store = useStore();
 const router = useRouter();
 const housesData = computed(() => store.getters.housesData);
+const selectedHouse = computed(() => store.getters.selectedHouse);
+
 
 const getRecommendedHouses = () => {
   if (!housesData.value) {
     return [];
   }
-  const houses = housesData.value.filter(house => !house.madeByMe).slice();
-  const recommendedHouses = [];
-
-  while (recommendedHouses.length < 3 && houses.length > 0) {
-    const randomIndex = Math.floor(Math.random() * houses.length);
-    recommendedHouses.push(houses.splice(randomIndex, 1)[0]);
-  }
-
+  const houses = housesData.value.filter(house => !house.madeByMe && house.id !== selectedHouse.value.id).map(house => ({
+    ...house,
+    priceDifference: Math.abs(house.price - selectedHouse.value.price)
+  }));
+  houses.sort((a, b) => a.priceDifference - b.priceDifference);
+  const recommendedHouses = houses.slice(0, 3);
   return recommendedHouses;
 };
 
@@ -80,9 +80,8 @@ const goToHouse = (id) => {
   padding: 15px;
 }
 
-.recommended-houses{
+.recommended-houses {
   width: 90%;
-  margin-bottom: 100px;
 }
 
 h2 {
@@ -123,4 +122,15 @@ h3 {
   height: 100px;
   border-radius: 8px;
 }
+
+@media only screen and (max-width: 768px) {
+  .house-info {
+    margin-left: 20px;
+  }
+}
+
+.recommended-houses {
+  width: 90%;
+}
+
 </style>

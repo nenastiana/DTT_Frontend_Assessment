@@ -229,6 +229,7 @@ watch(houseId, async () => {
   .detail-card {
     font-size: 14px;
     padding-bottom: 20px;
+    margin-bottom: 0;
     width: 100%;
   }
 

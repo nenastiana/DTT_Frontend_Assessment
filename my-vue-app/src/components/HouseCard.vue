@@ -144,6 +144,7 @@ const navigateToEdit = (id) => {
   display: flex;
   color: #4a4b4c;
   margin-right: 20px;
+  text-wrap: nowrap;
 }
 
 .house-image {
@@ -163,15 +164,17 @@ const navigateToEdit = (id) => {
   gap: 20px;
 }
 
-.house-info img {
+.house-details img {
   width: 20px;
   height: min-content;
   margin-right: 5px;
 }
 
-.actions-icon img {
+.like-icon,
+.edit-icon,
+.delete-icon {
+  width: 20px;
   margin-right: 20px;
-  cursor: pointer;
 }
 
 .house-zip {
@@ -186,15 +189,9 @@ const navigateToEdit = (id) => {
 
 @media only screen and (max-width: 768px) {
 
-  .actions-icon img {
-    margin-right: 10px;
-    width: 15px;
-    height: auto;
-    cursor: pointer;
-  }
-
   .card {
     width: 100%;
+    min-width: fit-content;
     height: auto;
     margin-bottom: 15px;
     font-size: 14px;
@@ -206,9 +203,16 @@ const navigateToEdit = (id) => {
     gap: 5px;
   }
 
-  .house-info img {
+  .house-details img {
     width: 15px;
-    height: 15px;
+    height: 17px;
+  }
+
+  .like-icon,
+  .edit-icon,
+  .delete-icon {
+    width: 15px;
+    margin-right: 15px;
   }
 
   .house-image {
