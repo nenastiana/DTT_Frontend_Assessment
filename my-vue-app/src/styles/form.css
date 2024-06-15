@@ -111,10 +111,6 @@ label {
   margin-bottom: 5px;
 }
 
-.mobile-header {
-  display: none;
-}
-
 select {
   font-family: 'Montserrat', sans-serif;
   margin-top: 4px;
@@ -133,9 +129,6 @@ select {
   border: 1px dashed #c3c3c3;
 }
 
-.desktop-header {
-  margin-top: 100px;
-}
 @media only screen and (max-width: 768px) {
   .background-container {
     background-size: 100% auto;
@@ -145,6 +138,7 @@ select {
 
   .button-container {
     justify-content: center;
+    align-items: center;
   }
 
   button {
@@ -167,17 +161,10 @@ select {
   .form-row {
     gap: 25px;
   }
-  .desktop-header {
-    display: none;
-  }
 
   .error-message {
     color: red;
     font-size: 10px;
-  }
-
-  h1 {
-    font-size: 18px;
   }
 
   input {
@@ -186,12 +173,6 @@ select {
 
   label {
     font-size: 14px;
-  }
-
-  .mobile-header {
-    display: flex;
-    align-items: center;
-    width: 350px;
   }
 
   .upload-icon {

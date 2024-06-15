@@ -147,6 +147,11 @@ watch(houseId, async () => {
   width: 20px;
 }
 
+.back-icon {
+  margin-right: 20px;
+  width: 20px;
+}
+
 .content-container {
   display: flex;
   flex-direction: row;
@@ -204,8 +209,8 @@ watch(houseId, async () => {
 }
 
 .desktop-header {
-    margin-top: 120px;
-  }
+  margin-top: 120px;
+}
 
 @media only screen and (max-width: 768px) {
   .actions-container {
