@@ -128,8 +128,6 @@ onMounted(async () => {
 watch(houseId, async () => {
   await fetchHouseData();
 });
-
-
 </script>
 
 <style scoped>

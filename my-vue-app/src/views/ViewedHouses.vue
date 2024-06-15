@@ -24,9 +24,8 @@ import Modal from '../components/ModalPopUp.vue';
 }
 
 @media only screen and (max-width: 768px) {
- 
-.text {
-  margin-top: 50px;
-}
+  .text {
+    margin-top: 50px;
+  }
 }
 </style>

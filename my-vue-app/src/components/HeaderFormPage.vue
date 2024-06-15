@@ -18,7 +18,7 @@
 <script setup>
 import IconBack from '../components/icons/ic_back_grey@3x.png';
 
-const props = defineProps({
+defineProps({
     formHeaderText: {
         type: String,
         default: null
@@ -44,20 +44,20 @@ const props = defineProps({
 }
 
 .back-button {
-  display: flex;
-  align-items: center;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    cursor: pointer;
 }
 
 .back-icon {
-  margin-right: 20px;
-  width: 20px;
+    margin-right: 20px;
+    width: 20px;
 }
 
 .back-text {
-  font-weight: 600;
+    font-weight: 600;
 }
 
 @media only screen and (max-width: 768px) {

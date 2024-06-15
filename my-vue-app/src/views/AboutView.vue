@@ -76,8 +76,8 @@ import LogoImage from '../assets/img_logo_dtt@3x.png';
   }
 
   .company-info {
-  margin-top: 20px;
-}
+    margin-top: 20px;
+  }
 
   .company-links {
     gap: 2px;
@@ -102,6 +102,5 @@ import LogoImage from '../assets/img_logo_dtt@3x.png';
   p {
     font-size: 12px;
   }
-
 }
 </style>

@@ -118,7 +118,7 @@ nav a:hover {
   nav a {
     margin-right: 0;
   }
-  
+
   nav a:nth-child(3),
   nav a:nth-child(4),
   nav a:nth-child(5) {

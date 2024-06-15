@@ -1,3 +1,5 @@
+<!-- This component displays a list of recommended houses similar in price to the selected house -->
+
 <template>
   <div class="recommended-houses">
     <h2>Recommended for you:</h2>
@@ -40,7 +42,7 @@ const router = useRouter();
 const housesData = computed(() => store.getters.housesData);
 const selectedHouse = computed(() => store.getters.selectedHouse);
 
-
+// Filter out the user's houses, and sort the remaining houses by price difference to the selected house
 const getRecommendedHouses = () => {
   if (!housesData.value) {
     return [];
@@ -132,5 +134,4 @@ h3 {
 .recommended-houses {
   width: 90%;
 }
-
 </style>

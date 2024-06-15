@@ -1,3 +1,7 @@
+<!--It's a form component for entering house information. Upon form submission, 
+it checks if all required fields are completed and, if valid, calls the submitForm function,
+otherwise validation error is shown. -->
+
 <template>
     <form @submit.prevent="submitFormFunc">
 
@@ -125,6 +129,7 @@ const house = props.house;
 const houseForm = ref(createHouseForm(house));
 const showError = ref(false);
 
+// Function that generates a form object for creating or editing house 
 function createHouseForm(house) {
     return {
         price: house ? house.price : '',

@@ -1,3 +1,5 @@
+<!-- This component allows sorting house listings by price and size. -->
+
 <template>
   <div class="sort-container">
     <button @click="setSortOrder('price')" class="sort-button sort-button-price" :class="sortButtonClasses('price')">

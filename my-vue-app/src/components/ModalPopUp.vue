@@ -1,3 +1,5 @@
+<!-- This component displays a modal to confirm/cancel the deletion of a house listing -->
+
 <template>
   <div class="modal" v-if="showModal">
     <div class="modal-content">

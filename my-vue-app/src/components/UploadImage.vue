@@ -1,8 +1,10 @@
+<!-- This component manages image uploading and previewing. Image file is saved in store to be used in other components. -->
+
 <template>
     <div class="image-upload-input" v-if="!imageUrl">
         <label for="imageUpload">Upload picture (PNG or JPG)*</label>
 
-        <label for="imageUpload" class="customUpload">
+        <label for="imageUpload">
             <img :src="IconUpload" alt="Upload Icon" class="upload-icon" />
         </label>
         <input type="file" id="imageUpload" style="display: none" @change="handleImageUploadFromComputer" />
@@ -20,10 +22,10 @@ import { useStore } from 'vuex';
 const store = useStore();
 
 const props = defineProps({
-  initialImageUrl: {
-    type: String,
-    default: null
-  },
+    initialImageUrl: {
+        type: String,
+        default: null
+    },
 });
 
 const imageUrl = ref(props.initialImageUrl);
@@ -43,9 +45,8 @@ import IconUpload from '../components/icons/ic_upload@3x.png';
 
 const clearImage = () => {
     imageUrl.value = null;
-    store.dispatch('clearImageFile'); 
+    store.dispatch('clearImageFile');
 };
-
 </script>
 
 <style>

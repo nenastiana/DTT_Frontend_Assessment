@@ -1,12 +1,15 @@
+<!-- This component displays search results based on a search query. 
+It shows the number of results or a message with an empty search. -->
+
 <template>
-    <h3 class="results-count" v-if="searchQuery && resultsCount > 0">
-      {{ resultsCount }} results found
-    </h3>
-    <div v-else-if="searchQuery && resultsCount === 0" class="empty-search-container">
-      <img :src="ImageEmptySearch" alt="Empty Search" />
-      <p>No results found.</p>
-      <p>Please try another keyword.</p>
-    </div>
+  <h3 class="results-count" v-if="searchQuery && resultsCount > 0">
+    {{ resultsCount }} results found
+  </h3>
+  <div v-else-if="searchQuery && resultsCount === 0" class="empty-search-container">
+    <img :src="ImageEmptySearch" alt="Empty Search" />
+    <p>No results found.</p>
+    <p>Please try another keyword.</p>
+  </div>
 </template>
 
 <script setup>

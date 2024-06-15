@@ -1,3 +1,5 @@
+<!-- This component displays a list of house cards with filtering options.-->
+
 <template>
   <div class="card-container">
     <div v-for="house in filteredHouses" :key="house.id" class="card" @click="navigateToHouse(house.id)">
@@ -226,7 +228,6 @@ const navigateToEdit = (id) => {
   .house-location {
     width: 60%;
     word-wrap: break-word;
-    white-space: normal;
   }
 
   .house-details {

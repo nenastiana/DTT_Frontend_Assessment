@@ -23,6 +23,8 @@ export default createStore({
     },
     SET_SELECTED_HOUSE(state, houses) {
       const house = houses[0];
+      
+      // Standardize the format of receiving data as it is expected in create/edit components
       const houseNewFormat = {
         id: house.id,
         image: house.image,
@@ -81,6 +83,7 @@ export default createStore({
     }
   },
   actions: {
+    // Fetch houses and save data in store
     async fetchHousesData({ commit }) {
       try {
         const data = await service.fetchHousesData();
@@ -100,6 +103,7 @@ export default createStore({
         throw error;
       }
     },
+    // Fetch house by id and save data in store
     async fetchHouseById({ commit }, id) {
       try {
         const data = await service.fetchHouseById(id);
@@ -109,6 +113,7 @@ export default createStore({
         throw error;
       }
     },
+    // Update house's data and optionally its image
     async updateHouse({ dispatch }, payload) {
       try {
         const data = await service.updateHouse(payload.id, payload.houseForm);
@@ -121,6 +126,7 @@ export default createStore({
         throw error;
       }
     },
+    // Create a new house and optionally upload its image, returning the new house ID
     async createHouse({ dispatch }, payload) {
       try {
         const data = await service.createHouse(payload.houseForm);
@@ -143,21 +149,27 @@ export default createStore({
         throw error;
       }
     },
+    // Commit a new search query to filter houses
     setSearchQuery({ commit }, query) {
       commit('SET_SEARCH_QUERY', query);
     },
+    // Commit a new sort order (by price or size) for the list of houses
     setSortOrder({ commit }, order) {
       commit('SET_SEARCH_ORDER', order);
     },
+    // Open a modal to confirm the deletion of house
     openModal({ commit }, houseId) {
       commit('OPEN_MODAL', houseId);
     },
+    // Add house ID to favorites and update local storage
     addToFavorites({ commit }, houseId) {
       commit('ADD_TO_FAVORITES', houseId);
     },
+    // Remove house ID from favorites and update local storage
     removeFromFavorites({ commit }, houseId) {
       commit('REMOVE_FROM_FAVORITES', houseId);
     },
+    // Add a house ID to viewed houses and update local storage
     addToViewed({ commit }, houseId) {
       commit('ADD_VIEWED_HOUSE', houseId);
     },
@@ -181,9 +193,10 @@ export default createStore({
     showModal: (state) => state.showModal,
     searchQuery: (state) => state.searchQuery,
     sortOrder: (state) => state.sortOrder,
+
+    // Get a filtered list of houses matching the search criteria and sorted by either price or size if specified
     filteredHouses(state) {
       let filtered = [];
-
       if (state.housesData !== null) {
         filtered = state.housesData.slice();
 
@@ -199,16 +212,16 @@ export default createStore({
             );
           });
         }
-
         if (state.sortOrder === 'price') {
           filtered.sort((a, b) => a.price - b.price);
         } else if (state.sortOrder === 'size') {
           filtered.sort((a, b) => a.size - b.size);
         }
       }
-
       return filtered;
     },
+
+    // Return the count of houses that match the search query
     resultsCount(state, getters) {
       return getters.filteredHouses.length;
     },

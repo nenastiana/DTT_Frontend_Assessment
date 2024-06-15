@@ -17,7 +17,6 @@ import { useStore } from 'vuex';
 import FormHouse from '../components/FormHouse.vue';
 import HeaderFormPage from '../components/HeaderFormPage.vue';
 
-
 const router = useRouter();
 const store = useStore();
 

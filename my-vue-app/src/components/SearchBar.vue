@@ -26,7 +26,6 @@ const clearSearch = () => {
 </script>
 
 <style scoped>
-
 .search-bar {
   display: flex;
   align-items: center;
