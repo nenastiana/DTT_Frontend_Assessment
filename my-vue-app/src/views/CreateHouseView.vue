@@ -1,20 +1,9 @@
 <template>
   <div class="background-container">
     <div class="content-container">
-      <div class="desktop-header">
-        <div class="back-button" @click="navigateToOverview">
-          <img :src="IconBack" alt="Back" class="back-icon" />
-          <span class="back-text">Back to overview</span>
-        </div>
-        <h1>Create new listing</h1>
-      </div>
+      <HeaderFormPage :navigateFunction="navigateToOverview" :formHeaderText="'Create new listing'"
+        :backText="'Back to overview'" />
 
-      <div class="mobile-header">
-        <div class="back-button" @click="navigateToOverview">
-          <img :src="IconBack" alt="Back" class="back-icon" />
-        </div>
-        <h1>Create new listing</h1>
-      </div>
       <FormHouse buttonText="Post" :submitForm="createHouse" />
     </div>
   </div>
@@ -26,7 +15,8 @@ import { useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
 import FormHouse from '../components/FormHouse.vue';
-import IconBack from '../components/icons/ic_back_grey@3x.png';
+import HeaderFormPage from '../components/HeaderFormPage.vue';
+
 
 const router = useRouter();
 const store = useStore();

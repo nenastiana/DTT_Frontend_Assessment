@@ -1,22 +1,8 @@
 <template>
   <div class="background-container">
     <div class="content-container">
-
-      <div class="desktop-header">
-        <div class="back-button" @click="navigateToHouseDetail">
-          <img :src="IconBack" alt="Back" class="back-icon" />
-          <span class="back-text">Back to detail page</span>
-        </div>
-        <h1>Edit listing</h1>
-      </div>
-
-      <div class="mobile-header">
-        <div class="back-button" @click="navigateToHouseDetail">
-          <img :src="IconBack" alt="Back" class="back-icon" />
-        </div>
-        <h1>Edit listing</h1>
-      </div>
-
+      <HeaderFormPage :navigateFunction="navigateToHouseDetail" :formHeaderText="'Edit listing'"
+        :backText="'Back to detail page'" />
       <div v-if="isLoading">
         <p>Loading...</p>
       </div>
@@ -35,7 +21,7 @@ import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
 
 import FormHouse from '../components/FormHouse.vue';
-import IconBack from '../components/icons/ic_back_grey@3x.png';
+import HeaderFormPage from '../components/HeaderFormPage.vue';
 
 const isLoading = ref(true);
 
