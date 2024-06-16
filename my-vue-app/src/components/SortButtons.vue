@@ -50,6 +50,10 @@ button {
   width: 175px;
 }
 
+.sort-button {
+  margin: 0;
+}
+
 .sort-button-active {
   background-color: #eb5440;
 }
