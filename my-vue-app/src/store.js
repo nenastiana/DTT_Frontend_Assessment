@@ -44,6 +44,9 @@ export default createStore({
       };
       state.selectedHouse = houseNewFormat;
     },
+    UNSET_SELECTED_HOUSE(state) {
+      state.selectedHouse = null;
+    },
     UPDATE_HOUSE_IMAGE(state, imageUrl) {
       if (state.selectedHouse) {
         state.selectedHouse.image = imageUrl;
@@ -178,6 +181,9 @@ export default createStore({
     },
     clearImageFile({ commit }) {
       commit('CLEAR_IMAGE_FILE');
+    },
+    unsetSelectedHouse({ commit }) {
+      commit('UNSET_SELECTED_HOUSE');
     }
   },
   getters: {

@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { computed, onMounted, ref } from 'vue';
+import { computed, onMounted, onUnmounted, ref } from 'vue';
 import { useStore } from 'vuex';
 import { useRoute, useRouter } from 'vue-router';
 
@@ -58,6 +58,11 @@ const updateHouse = async (houseForm) => {
 onMounted(async () => {
   await store.dispatch('fetchHouseById', houseId.value);
   isLoading.value = false;
+});
+
+// Selected house is not in use anymore
+onUnmounted(() => {
+  store.dispatch('unsetSelectedHouse');
 });
 </script>
 

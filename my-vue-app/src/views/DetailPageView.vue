@@ -81,7 +81,7 @@
 </template>
 
 <script setup>
-import { ref, watch, computed, onMounted } from 'vue';
+import { ref, watch, computed, onMounted, onUnmounted } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import { useStore } from 'vuex';
 
@@ -128,6 +128,11 @@ onMounted(async () => {
 watch(houseId, async () => {
   await fetchHouseData();
 });
+
+// Selected house is not in use anymore
+onUnmounted(() => {
+  store.dispatch('unsetSelectedHouse');
+});
 </script>
 
 <style scoped>
@@ -145,9 +150,21 @@ watch(houseId, async () => {
   width: 20px;
 }
 
+.back-button {
+  display: flex;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  cursor: pointer;
+}
+
 .back-icon {
   margin-right: 20px;
   width: 20px;
+}
+
+.back-text {
+  font-weight: 600;
 }
 
 .content-container {

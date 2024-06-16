@@ -17,10 +17,13 @@
 <script setup>
 import { computed } from 'vue';
 import { useStore } from 'vuex';
+import { useRouter } from 'vue-router';
 
 const store = useStore();
+const router = useRouter();
 const showModal = computed(() => store.state.showModal);
 const currentHouseId = computed(() => store.state.currentHouseId);
+const selectedHouse = computed(() => store.getters.selectedHouse);
 
 const closeModal = () => {
   store.commit('CLOSE_MODAL');
@@ -29,6 +32,9 @@ const closeModal = () => {
 const confirmDelete = () => {
   store.dispatch('deleteHouse', currentHouseId.value);
   closeModal();
+  if (selectedHouse.value) {
+    router.push('/');
+  }
 };
 </script>
 
